@@ -80,7 +80,8 @@ function App() {
     filteredArray.forEach((group) => {
       if (
         group.label !== selectedCommunity.label &&
-        group.groupCategory !== "public" &&
+        group.groupCategory === groupCategory &&
+        group.groupType === groupType &&
         group.membershipCount >= parseInt(memberCount)
       ) {
         const groupLocation = group.location.split(", ");
