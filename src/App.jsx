@@ -1,17 +1,28 @@
 import { useState } from "react";
 import finderLogo from "./assets/logo.png";
 import "./App.css";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
-import CircularProgress from "@mui/material/CircularProgress";
+import {
+  Autocomplete,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+  CircularProgress,
+  InputAdornment,
+} from "@mui/material";
 import NeighborsList from "./NeighborsList";
 import { communityGroups } from "./communityGroups";
 import { calculateDistance } from "./utils";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import BusinessIcon from "@mui/icons-material/Business";
+import ShopIcon from "@mui/icons-material/Shop";
+import LocationCityIcon from "@mui/icons-material/LocationCity";
+import SocialDistanceIcon from "@mui/icons-material/SocialDistance";
+import Diversity3Icon from "@mui/icons-material/Diversity3";
+import VpnLockIcon from "@mui/icons-material/VpnLock";
+import PublicIcon from "@mui/icons-material/Public";
 
 function App() {
   const [selectedCommunity, setSelectedCommunity] = useState(null);
@@ -137,6 +148,12 @@ function App() {
             value={groupType}
             label="Group Type"
             onChange={handleGroupTypeChange}
+            sx={{
+              textAlign: "left", // Align text to the left
+              "& .MuiSelect-select": {
+                textAlign: "left", // Align selected option to the left
+              },
+            }}
           >
             <MenuItem value="Business">Business</MenuItem>
             <MenuItem value="Buy/Sell">Buy/Sell</MenuItem>
@@ -174,6 +191,12 @@ function App() {
             value={groupCategory}
             label="Group Category"
             onChange={handleGroupCategoryChange}
+            sx={{
+              textAlign: "left", // Align text to the left
+              "& .MuiSelect-select": {
+                textAlign: "left", // Align selected option to the left
+              },
+            }}
           >
             <MenuItem value="public">Public</MenuItem>
             <MenuItem value="private">Private</MenuItem>
@@ -204,8 +227,10 @@ function App() {
           )}
         </div>
       </form>
-      {myNeighbors.length > 0 && (
+      {myNeighbors.length > 0 ? (
         <h2>{myNeighbors.length} matching results found</h2>
+      ) : (
+        <h2> No match found</h2>
       )}
 
       <NeighborsList
